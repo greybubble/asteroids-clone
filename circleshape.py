@@ -1,4 +1,5 @@
 import pygame
+from constants import *
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -27,3 +28,11 @@ class CircleShape(pygame.sprite.Sprite):
             return True
 
         return False 
+    
+    def offscreen(self):
+        return (
+            self.position.x + self.radius * 3 < 0
+            or self.position.y + self.radius * 3 < 0
+            or self.position.x - self.radius * 3 > SCREEN_WIDTH
+            or self.position.y - self.radius * 3 > SCREEN_HEIGHT
+        )
